@@ -14,7 +14,7 @@ grade: stable
 apps:
   atestsnap:
     command: usr/bin/python
-    extensions: [gnome-3-38]
+    extensions: [gnome]
 
 parts:
   atestsnap:
