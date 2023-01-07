@@ -1,0 +1,19 @@
+name: atestsnap
+summary: summary
+description: |
+  description
+
+version: '0.1'
+base: core20
+confinement: strict
+grade: stable
+
+apps:
+  atestsnap:
+    command: usr/bin/python
+    extensions: [gnome-3-38]
+
+parts:
+  atestsnap:
+    plugin: python
+    source: https://github.com/psf/requests.git
