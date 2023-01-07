@@ -3,6 +3,9 @@ summary: summary
 description: |
   description
 
+architectures:
+  - amd64
+
 version: '0.1'
 base: core20
 confinement: strict
