@@ -11,12 +11,58 @@ base: core22
 confinement: strict
 grade: stable
 
+plugs:
+  gtk-3-themes:
+    interface: content
+    target: $SNAP/share/themes
+    default-provider: gtk-common-themes
+  icon-themes:
+    interface: content
+    target: $SNAP/share/icons
+    default-provider: gtk-common-themes
+  sound-themes:
+    interface: content
+    target: $SNAP/share/sounds
+    default-provider: gtk-common-themes
+
 apps:
   atestsnap:
     command: bin/python3
     extensions: [gnome]
+    plugs:
+      - home
+      - desktop
+      - desktop-legacy
+      - unity7
+      - x11
+      - wayland
+      - gsettings
+      - network
+      - network-bind
+      - removable-media
+      - raw-usb
+      - serial-port
 
 parts:
   atestsnap:
     plugin: python
-    source: https://github.com/psf/requests.git
+    source: https://github.com/kk7ds/chirp.git
+    stage-packages:
+      - python3-requests
+      - python3-serial
+      - python3-six
+      - python3-suds
+      - python3-future
+      - python3-yattag
+      - python3-wxgtk4.0
+      #- fontconfig
+      #- libcanberra-gtk3-module
+      #- appmenu-gtk3-module
+      #- librsvg2-common
+      #- libice6
+      #- libpcre2-32-0
+      #- libsm6
+      #- libxtst6
+      #- libatk-adaptor
+      #- libgail-common
+      
