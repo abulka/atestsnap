@@ -28,7 +28,7 @@ plugs:
 apps:
   atestsnap:
     command: bin/python3
-    #extensions: [gnome]
+    extensions: [gnome]
     plugs:
       - home
       - desktop
@@ -67,5 +67,6 @@ parts:
       #- libgail-common
     override-build: |
       env
+      unset PYTHON_PATH
       snapcraftctl build
       
