@@ -67,6 +67,6 @@ parts:
       #- libgail-common
     override-build: |
       env
-      unset PYTHON_PATH
+      unset PYTHONPATH
       snapcraftctl build
       
