@@ -65,4 +65,7 @@ parts:
       #- libxtst6
       #- libatk-adaptor
       #- libgail-common
+    override-build: |
+      env
+      snapcraftctl build
       
