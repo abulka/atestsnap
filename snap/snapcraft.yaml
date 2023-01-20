@@ -18,7 +18,8 @@ apps:
   atestsnap:
     command: bin/chirp
     extensions:
-      # HINT: Adds plugs and changes environment variables when building and running
+      # HINT: gnome extension is incompatible with python apps. 
+      # 
       - gnome
     plugs:
       - home
@@ -28,30 +29,10 @@ apps:
       - serial-port
 
 parts:
-  # libadwaita:
-  #   plugin: meson
-  #   source: https://gitlab.gnome.org/GNOME/libadwaita/-/archive/1.2.0/libadwaita-1.2.0.tar.bz2
-  #   source-checksum: sha256/9da0df3d2f2f5c0a79becd47d09312124542545e4aa1ea151b993c5f6b939e78
-  #   override-pull: |
-  #     craftctl default
-  #     # WORKAROUND: Ignore compiler warning
-  #     sed -e 's/-W\(format-nonliteral\)\b/-Wno-\1/g' -i meson.build
-  #   meson-parameters:
-  #     # WORKAROUND: Must be installed to /usr because of GI search path
-  #     - --prefix=/usr
-  #     - -Dexamples=false
-  #     - -Dtests=false
-  #     - -Dvapi=false
-  #   stage:
-  #     - -usr/include
-
   atestsnap:
-    # Missing optional dependencies atomicparsley, mpv, phantomjs and rtmpdump
-    #after: [libadwaita]
     plugin: python
     source: https://github.com/kk7ds/chirp.git
     stage-packages:
-      - bash
       - python3-requests
       - python3-serial
       - python3-six
