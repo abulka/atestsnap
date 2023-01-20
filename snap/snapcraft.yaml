@@ -16,7 +16,7 @@ environment:
 
 apps:
   atestsnap:
-    command: bin/python3
+    command: usr/bin/env python3
     extensions:
       # HINT: Adds plugs and changes environment variables when building and running
       - gnome
