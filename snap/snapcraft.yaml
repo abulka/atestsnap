@@ -64,6 +64,9 @@ parts:
       - PYTHONPATH: ""
     override-pull: |
       craftctl default
+    override-build: |
+      sed -i 's/py3dev/0.0.1' ${SNAPCRAFT_PART_BUILD}/chirp/__init__.py
+      craftctl build
     stage:
       # WORKAROUND: Skip venv from python plugin
       - -bin/activate
