@@ -16,7 +16,7 @@ environment:
 
 apps:
   atestsnap:
-    command: bin/bash
+    command: bin/chirp
     extensions:
       # HINT: Adds plugs and changes environment variables when building and running
       - gnome
