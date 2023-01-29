@@ -44,6 +44,9 @@ parts:
       # WORKAROUND: The python plugin is broken with gnome extension
       - PATH: ${CRAFT_PART_INSTALL}/bin:${PATH}
       - PYTHONPATH: ""
+    override-pull: |
+      env
+      craftctl default
     override-build: |
       sed -i 's/py3dev/0.0.1/g' ${SNAPCRAFT_PART_BUILD}/chirp/__init__.py
       craftctl default
