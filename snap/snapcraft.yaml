@@ -47,7 +47,7 @@ parts:
     override-pull: |
       ver=$(basename $(curl -Ls -o/dev/null -w '%{url_effective}' https://trac.chirp.danplanet.com/download?stream=next))
       wget -O ${SNAPCRAFT_PART_SRC}/chirp-src.zip https://trac.chirp.danplanet.com/chirp_next/${ver}/chirp-${ver}.tar.gz
-      tar -xzf ${SNAPCRAFT_PART_SRC}/chirp-src.zip --strip-components=1
+      tar -xz -C ${SNAPCRAFT_PART_SRC} -f ${SNAPCRAFT_PART_SRC}/chirp-src.zip --strip-components=1
     stage:
       # WORKAROUND: Skip venv from python plugin
       - -bin/activate
