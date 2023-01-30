@@ -52,6 +52,8 @@ parts:
       tar -xz -C ${SNAPCRAFT_PART_SRC} -f ${SNAPCRAFT_PART_SRC}/chirp-src.tar.gz --strip-components=1
       # Until chirp version issue is fixed
       sed -i "s/version=CHIRP_VERSION/version=\"$(date +%Y%m%d)\"/g" ${SNAPCRAFT_PART_SRC}/setup.py
+      # Fix icon
+      sed -i "s/Icon=chirp/Icon=\$\{SNAP\}/lib/python3.10/site-packages/chirp/share/chirp.png/g" ${SNAPCRAFT_PART_SRC}/chirp/share/chirp.desktop
     stage:
       # WORKAROUND: Skip venv from python plugin
       - -bin/activate
