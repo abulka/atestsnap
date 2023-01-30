@@ -49,6 +49,8 @@ parts:
       ver=$(basename $(curl -Ls -o/dev/null -w '%{url_effective}' https://trac.chirp.danplanet.com/download?stream=next))
       curl -o ${SNAPCRAFT_PART_SRC}/chirp-src.tar.gz https://trac.chirp.danplanet.com/chirp_next/${ver}/chirp-${ver}.tar.gz
       tar -xz -C ${SNAPCRAFT_PART_SRC} -f ${SNAPCRAFT_PART_SRC}/chirp-src.tar.gz --strip-components=1
+      # Until chirp version issue is fixed
+      sed -i "s/version=CHIRP_VERSION/version=\"$(date +%Y%m%d)\"/g" ${SNAPCRAFT_PART_SRC}/setup.py
     stage:
       # WORKAROUND: Skip venv from python plugin
       - -bin/activate
