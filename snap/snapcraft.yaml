@@ -1,11 +1,14 @@
 name: atestsnap
-summary: summary
+summary: A free, open-source tool for programming your amateur radio
 description: |
-  description
+    CHIRP is a free, open-source tool for programming your amateur radio. 
+    It supports a large number of manufacturers and models, as well as 
+    provides a way to interface with multiple data sources and formats.
+
 architectures:
   - amd64
 
-version: '0.1'
+adopt-info: chirp
 base: core22
 confinement: strict
 grade: stable
@@ -19,8 +22,7 @@ apps:
     command: bin/chirp
     desktop: lib/python3.10/site-packages/chirp/share/chirp.desktop
     extensions:
-      # HINT: gnome extension is incompatible with python apps. 
-      # 
+      # WARNING: gnome extension is incompatible with python apps. 
       - gnome
     plugs:
       - home
@@ -33,15 +35,6 @@ parts:
   atestsnap:
     plugin: python
     source: NOT_USED.zip
-    #source: https://github.com/kk7ds/chirp.git
-    stage-packages:
-      - python3-requests
-      - python3-serial
-      - python3-six
-      - python3-suds
-      - python3-future
-      - python3-yattag
-      - python3-wxgtk4.0
     build-environment:
       # WORKAROUND: The python plugin is broken with gnome extension
       - PATH: ${CRAFT_PART_INSTALL}/bin:${PATH}
@@ -54,6 +47,18 @@ parts:
       tar -xz -C ${SNAPCRAFT_PART_SRC} -f ${SNAPCRAFT_PART_SRC}/chirp-src.tar.gz --strip-components=1
       # Fix icon
       sed -i 's,Icon=chirp,Icon=${SNAP}/lib/python3.10/site-packages/chirp/share/chirp.svg,g' ${SNAPCRAFT_PART_SRC}/chirp/share/chirp.desktop
+      # snap version cannot be longer than 32 characters
+      TARBALL_SHA_SHORT=$(sha1sum ${SNAPCRAFT_PART_SRC}/chirp-src.tar.gz | head -c 8)
+      SNAP_VERSION="snap-$(date +%Y%m%d)+${TARBALL_SHA_SHORT}"
+      snapcraftctl set-version "$SNAP_VERSION"
+    stage-packages:
+      - python3-requests
+      - python3-serial
+      - python3-six
+      - python3-suds
+      - python3-future
+      - python3-yattag
+      - python3-wxgtk4.0
     stage:
       # WORKAROUND: Skip venv from python plugin
       - -bin/activate
