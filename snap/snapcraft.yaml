@@ -32,7 +32,7 @@ apps:
 parts:
   atestsnap:
     plugin: python
-    source: NOT_USED
+    source: NOT_USED.zip
     #source: https://github.com/kk7ds/chirp.git
     stage-packages:
       - python3-requests
