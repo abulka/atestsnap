@@ -8,7 +8,7 @@ description: |
 architectures:
   - amd64
 
-adopt-info: chirp
+adopt-info: atestsnap
 base: core22
 confinement: strict
 grade: stable
