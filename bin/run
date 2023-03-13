@@ -1,0 +1,3 @@
+cd src
+PYTHON=python3
+$PYTHON pynsource_gui.py
